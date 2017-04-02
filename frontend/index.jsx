@@ -6,16 +6,11 @@ import Root from './Root.jsx'
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  const render = () => 
+  const render = () =>
     ReactDOM.render(<AppContainer><Root /></AppContainer>,
       document.getElementById('root'))
 
-  if (module.hot) {
-    render()
-    module.hot.accept('./Root', render)
-  } else {
-    render()
-  }
+  render()
 
+  if (module.hot) module.hot.accept('./Root', render)
 })
-

@@ -51,4 +51,11 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  # Hot-reloading of bundle files
+  config.action_controller.asset_host = Proc.new { |source|
+    if source =~ /bundle\.js$/i
+      "http://localhost:8080"
+    end
+  }
 end
