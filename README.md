@@ -136,3 +136,8 @@ Now to keep webpack watching and HMR hot-reloading, simply run `webpack-dev-serv
   - Run `guard init livereload` to generate a Guardfile. The defaults should work just fine.
 
 Now just run `guard exec -P livereload` during development to run style injection.
+
+## Additional Resources
+- [Hot Module Replacement - React](https://webpack.js.org/guides/hmr-react/)
+- [Lightning-Fast Sass Reloading in Rails](https://mattbrictson.com/lightning-fast-sass-reloading-in-rails)
+- [Guard::LiveReload Docs](https://github.com/guard/guard-livereload)
