@@ -58,4 +58,8 @@ Rails.application.configure do
       "http://localhost:8080"
     end
   }
+
+  # LiveReload
+  # Automatically inject JavaScript needed for LiveReload
+  config.middleware.insert_after(ActionDispatch::Static, Rack::LiveReload)
 end

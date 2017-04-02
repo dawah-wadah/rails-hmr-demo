@@ -1,8 +1,12 @@
-# React Hot Module Replacement with Rails
+# React Hot Module Replacement and LiveReload Style Injection with Rails
 
-This is a simple demo of how to get Rails and Webpack configured for React Hot Module Replacement (HMR).
+This is a simple demo of how to get Rails and Webpack configured for React Hot Module Replacement (HMR) and setup Guard + LiveReload for live CSS updates.
 
-## Steps
+## Hot Module Replacement
+
+Hot Module Replacement exchanges, adds, or removes modules while an application is running without a page reload. This is really nice for development as it rerenders your component hierarchy whenever a file is changed, but maintains app state (no need to refresh and navigate back to where you were).
+
+The following steps are needed to setup HMR for development:
 
 1. Add `webpack-dev-server` and `react-hot-loader` (> v 3.0) as npm dev dependencies.
   - `npm install --save-dev webpack-dev-server react-hot-loader@3.0.0-beta.6`
@@ -110,3 +114,25 @@ This is a simple demo of how to get Rails and Webpack configured for React Hot M
     }
   end
   ```
+
+Now to keep webpack watching and HMR hot-reloading, simply run `webpack-dev-server --inline --progress`. I recommend adding this as a script to your `package.json`.
+
+## LiveReload Style Injection
+
+1. Add Guard and LiveReload gems to `development`
+  ```ruby
+  group :development do
+    # other dev gems...
+
+    # live css reloading
+    gem 'guard-rails', require: false
+    gem 'guard-livereload', require: false
+    gem 'rack-livereload'
+    gem "rb-fsevent",        :require => false
+  end
+  ```
+
+2. Initialize `Guardfile`
+  - Run `guard init livereload` to generate a Guardfile. The defaults should work just fine.
+
+Now just run `guard exec -P livereload` during development to run style injection.
